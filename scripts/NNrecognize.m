@@ -1,4 +1,4 @@
-function prediction = NNrecognize(imageFile)
+function prediction = NNrecognize(imageFile, cropPercentage, rotStep)
 
 %%	NNRecognize:
 %				Recognizes input image using a trained neural network
@@ -36,7 +36,7 @@ load('../data/learntWeights.mat');
 fprintf('\nVectorizing the Image ...\n')
 
 % Vectorizing the raw jpeg image
-img = imageTo20x20Gray(imageFile, 100, 0);
+img = imageTo20x20Gray(imageFile, cropPercentage, rotStep);
 
 % =============== Classifying the image ===================
 
