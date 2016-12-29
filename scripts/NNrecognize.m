@@ -1,5 +1,4 @@
-function prediction = NNrecognize(imageFile,...
-	learntWeights = '../data/learntWeights', cropPercentage=0, rotStep=0)
+function prediction = NNrecognize(imageFile)
 
 %%	NNRecognize:
 %				Recognizes input image using a trained neural network
@@ -24,3 +23,25 @@ function prediction = NNrecognize(imageFile,...
 %             0  do not rotate (optional)
 %             1  rotate image 90 degrees CW
 %
+
+%% ================ Loading Parameters ======================
+
+fprintf('\nLoading Saved Neural Network Parameters ...\n')
+
+% Load the weights into variables Theta1 and Theta2
+load('../data/learntWeights.mat');
+
+%% ================ Loading the Image ======================
+
+fprintf('\nVectorizing the Image ...\n')
+
+% Vectorizing the raw jpeg image
+img = imageTo20x20Gray(imageFile, 100, 0);
+
+% =============== Classifying the image ===================
+
+% Classifying using the trained neural network
+prediction = predict(Theta1, Theta2, img);
+fprintf('\n>>Neural Network Prediction: %d (DIGIT %d)\n\n', prediction, mod(prediction, 10));
+
+end
