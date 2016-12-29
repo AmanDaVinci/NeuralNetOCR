@@ -87,10 +87,13 @@ pause;
 
 %% ================= Computing the Accuracy =================
 
+% Making predictions on the entire traning set
 pred = predict(Theta1, Theta2, X);
 
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
+% Saving the trained weights
+save('../data/learntWeights', 'Theta1', 'Theta2');
 
 %% ================= Predicting the Values =================
 
@@ -109,3 +112,13 @@ for i = 1:m
     % fprintf('Program paused. Press enter to continue.\n');
     pause;
 end
+
+
+%% ================= Classifying Raw Images =================
+
+% Vectorizing the raw jpeg image
+X = vectorImage('../data/digit2.jpg');
+
+% Classifying using the trained neural network
+pred = predict(Theta1, Theta2, X);
+fprintf('\n>>Neural Network Prediction: %d (DIGIT %d)\n\n', pred, mod(pred, 10));
