@@ -51,7 +51,7 @@ fprintf('\nTraining Neural Network... \n')
 options = optimset('MaxIter', 200);
 
 % Experimenting with learning rates
-lambda = 0.1;
+lambda = 1;
 
 % Create "short hand" for the cost function to be minimized
 costFunction = @(p) nnCostFunction(p, ...
