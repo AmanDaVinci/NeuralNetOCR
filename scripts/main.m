@@ -35,19 +35,23 @@ initial_Theta2 = randInitializeWeights(hidden_layer_size, num_labels);
 % Unroll parameters
 initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];
 
+%% ================ Checking Gradients ================
+
+% Setting up lambda for checking
+lambda = 1;
+
+% Check gradients by running checkNNGradients
+checkNNGradients(lambda);
 
 %% ================== Training NN =====================
 
 fprintf('\nTraining Neural Network... \n')
 
 % Experimenting with various iterations
-options = optimset('MaxIter', 50);
+options = optimset('MaxIter', 400);
 
 % Experimenting with learning rates
-lambda = 1;
-
-% Check gradients by running checkNNGradients
-checkNNGradients(lambda);
+lambda = 0.01;
 
 % Create "short hand" for the cost function to be minimized
 costFunction = @(p) nnCostFunction(p, ...
