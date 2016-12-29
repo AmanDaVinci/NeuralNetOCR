@@ -23,10 +23,8 @@ function vectorImage = imageTo20x20Gray(fileName, cropPercentage, rotStep)
 % (Thanks to Edwin Frühwirth for parts of this code)
 
 % Default parameters for matlab
-if ~exist('cropPercentage','rotStep'),
-	cropPercentage = 0;
-	rotStep = 0;
-end
+if ~exist('cropPercentage','var'),	cropPercentage = 0; end
+if ~exist('rotStep','var'),	rotStep = 0; end
 
 % Read as RGB image
 Image3DmatrixRGB = imread(fileName);
