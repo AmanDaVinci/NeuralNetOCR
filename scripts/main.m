@@ -48,10 +48,10 @@ checkNNGradients(lambda);
 fprintf('\nTraining Neural Network... \n')
 
 % Experimenting with various iterations
-options = optimset('MaxIter', 400);
+options = optimset('MaxIter', 200);
 
 % Experimenting with learning rates
-lambda = 0.01;
+lambda = 0.1;
 
 % Create "short hand" for the cost function to be minimized
 costFunction = @(p) nnCostFunction(p, ...
@@ -74,7 +74,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% ================= Part 9: Visualize Weights =================
+%% ===================== Visualize Weights ========================
 % Visualizing what the neural network is learning by displaying 
 % the hidden units to see what features they are capturing in the data.
 
@@ -85,10 +85,27 @@ displayData(Theta1(:, 2:end));
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
-%% ================= Predicting the Values =================
+%% ================= Computing the Accuracy =================
 
 pred = predict(Theta1, Theta2, X);
 
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
 
+%% ================= Predicting the Values =================
+
+%  Randomly permute examples
+rp = randperm(m);
+
+for i = 1:m
+    % Display 
+    fprintf('\n>>Displaying Example Image\n');
+    displayData(X(rp(i), :));
+
+    pred = predict(Theta1, Theta2, X(rp(i),:));
+    fprintf('\n>>Neural Network Prediction: %d (DIGIT %d)\n\n', pred, mod(pred, 10));
+    
+    % Pause
+    % fprintf('Program paused. Press enter to continue.\n');
+    pause;
+end
