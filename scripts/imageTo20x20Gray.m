@@ -1,4 +1,4 @@
-function vectorImage = imageTo20x20Gray(fileName, cropPercentage=0, rotStep=0)
+function vectorImage = imageTo20x20Gray(fileName, cropPercentage, rotStep)
 
 %IMAGETO20X20GRAY display reduced image and converts for digit classification
 %
@@ -21,6 +21,12 @@ function vectorImage = imageTo20x20Gray(fileName, cropPercentage=0, rotStep=0)
 %             1  rotate image 90 degrees CW
 %
 % (Thanks to Edwin Frühwirth for parts of this code)
+
+% Default parameters for matlab
+if ~exist('cropPercentage','rotStep'),
+	cropPercentage = 0;
+	rotStep = 0;
+end
 
 % Read as RGB image
 Image3DmatrixRGB = imread(fileName);
