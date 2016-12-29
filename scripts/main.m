@@ -93,7 +93,7 @@ pred = predict(Theta1, Theta2, X);
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
 % Saving the trained weights
-save('../data/learntWeights', 'Theta1', 'Theta2');
+save('../data/learntWeights.mat', 'Theta1', 'Theta2');
 
 %% ================= Predicting the Values =================
 
